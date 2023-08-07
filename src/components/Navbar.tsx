@@ -4,10 +4,10 @@ import Banner from '../assets/Study.png'
 
 const Navbar = () => {
 	return (
-		<div className='py-10 px-20 absolute'>
+		<div className='w-full h-full pl-16'>
 			<div className="flex justify-start items-center">
-				<div className="w-32 h-32 z-10">
-					<img src={Banner} alt="" className='z-10'/>
+				<div className="w-[350px] z-10">
+					<img src={Banner} alt="" className='w-full h-auto object-cover' />
 				</div>
 			</div>
 		</div>
