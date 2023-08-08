@@ -3,17 +3,26 @@ import { RiListSettingsLine } from 'react-icons/ri'
 import { VscDebugRestart } from 'react-icons/vsc'
 import Timer from './Timer'
 import { useThemeContext } from '../hooks/useThemeContext'
+import Setting from './Setting'
 
 
 const Tags = () => {
 
 	const [activeTag, setActiveTag] = useState(0)
+	const [setting, setSetting] = useState(false)
+
 
 	const [state, dispatch] = useThemeContext();
+
+	const handleOpenSetting = () => {
+		setSetting(!setting)
+	}
 
 	const handleTagClick = (index: number) => {
 		setActiveTag(index)
 	}
+
+	console.log(setting)
 
 	const menu = [
 		{
@@ -59,10 +68,15 @@ const Tags = () => {
 				<button onClick={() => { dispatch({ type: "RESTART", value: true }) }}>
 					<VscDebugRestart size={30} className="text-white" />
 				</button>
-				<button>
+				<button onClick={handleOpenSetting}>
 					<RiListSettingsLine size={35} className="text-white" />
 				</button>
 			</div>
+			<Setting setting={setting} onSettingChange={handleOpenSetting} />
+			<div
+				onClick={handleOpenSetting}
+				className={`${setting ? 'block opacity-100' : 'hidden opacity-0'} w-screen h-screen absolute inset-0 bg-black/20 z-10`}
+			></div>
 		</div>
 	)
 }

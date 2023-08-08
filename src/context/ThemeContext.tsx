@@ -10,6 +10,7 @@ export interface TimeState {
 	second: number;
 	toggleOnOff: boolean;
 	restart: boolean;
+	mainBg: string;
 }
 
 export type TimeAction =
@@ -27,7 +28,8 @@ const initalState: TimeState = {
 	minute: 25,
 	second: 0,
 	toggleOnOff: false,
-	restart: false
+	restart: false,
+	mainBg: ""
 }
 
 const reducer = (state: TimeState, action: TimeAction) => {
