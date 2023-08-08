@@ -15,26 +15,52 @@ const Tags = () => {
 		setActiveTag(index)
 	}
 
+	const menu = [
+		{
+			name: "Pomodoro",
+			time: 25,
+
+		},
+		{
+			name: "Short Break",
+			time: 5
+		},
+		{
+			name: "Long Break",
+			time: 10
+		}
+	]
+
 	return (
 		<div className='flex flex-col justify-between items-center'>
 			<div className="pomodoro-duration flex w-full justify-between items-center gap-3 h-[4em]">
-				{["Pomodoro", "Short Break", "Long Break"].map((item, index) => (
+				{menu.map((item, index) => (
 					<button
 						key={index}
 						className={`px-5 py-3 border-2 text-white text-lg font-semibold transition-all ${activeTag != index ? 'bg-transparent' : 'bg-white !text-black'
 							} rounded-md`}
-						onClick={() => { handleTagClick(index) }}
+						onClick={() => {
+							handleTagClick(index);
+							dispatch({ type: "MINUTES", value: item.time })
+						}}
 					>
-						{item}
+						{item.name}
 					</button>
 				))}
 			</div>
 			<Timer />
 			<div className="flex justify-between items-center gap-5">
-				<button className='text-xl text-black font-semibold px-6 py-2 border bg-white rounded-md'
-					onClick={() => { dispatch({ type: "START", value: true }) }}
-				>Start</button>
-				<button onClick={() => { dispatch({ type: "STOP", value: true }) }}>
+				{
+					!state.startCounting && state.stopCounting === false ?
+						<button className='text-xl text-black font-semibold px-6 py-2 border bg-white rounded-md'
+							onClick={() => { dispatch({ type: "START", value: true }) }}
+						>Start</button>
+						:
+						<button className='text-xl text-black font-semibold px-6 py-2 border bg-white rounded-md'
+							onClick={() => { dispatch({ type: "STOP", value: true }) }}
+						>Pause</button>
+				}
+				<button onClick={() => { dispatch({ type: "RESTART", value: true }) }}>
 					<VscDebugRestart size={30} className="text-white" />
 				</button>
 				<button>

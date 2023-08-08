@@ -5,35 +5,35 @@ export const ThemeContext = createContext<ThemeContextType | null>(null);
 
 ThemeContext.displayName = "ThemeContext";
 
-export interface UIState {
+export interface TimeState {
 	minute: number;
 	second: number;
 	startCounting: boolean;
 	stopCounting: boolean;
-	restart: number;
+	restart: boolean;
 }
 
-export type UIAction =
+export type TimeAction =
 	| { type: "MINUTES"; value: number }
 	| { type: "SECOND"; value: number }
 	| { type: "START"; value: boolean }
 	| { type: "STOP"; value: boolean }
-	| { type: "RESTART"; value: number }
+	| { type: "RESTART"; value: boolean }
 
 export interface ThemeContextType {
-	state: UIState;
-	dispatch: React.Dispatch<UIAction>;
+	state: TimeState;
+	dispatch: React.Dispatch<TimeAction>;
 }
 
-const initalState: UIState = {
+const initalState: TimeState = {
 	minute: 25,
 	second: 0,
 	startCounting: false,
 	stopCounting: false,
-	restart: 25
+	restart: false
 }
 
-const reducer = (state: UIState, action: UIAction) => {
+const reducer = (state: TimeState, action: TimeAction) => {
 	switch (action.type) {
 		case "MINUTES":
 			return {

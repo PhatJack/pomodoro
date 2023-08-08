@@ -6,13 +6,12 @@ const CountdownAnimation = ({ children }: { children: any }) => {
 
 	const [state, dispatch] = useThemeContext();
 
-
 	return (
 		<CountdownCircleTimer
 			onComplete={() => { dispatch({ type: "STOP", value: true }) }}
-			isPlaying={state.startCounting}
+			isPlaying={state.startCounting && state.stopCounting === false}
 			duration={state.minute * 60}
-			colors={"#FFF"}
+			colors={"#ACFADF"}
 			strokeWidth={6}
 			size={250}
 			trailColor="#151932"

@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ThemeContext, UIAction, UIState } from "../context/ThemeContext";
+import { ThemeContext, TimeAction, TimeState } from "../context/ThemeContext";
 
-export const useThemeContext = (): [UIState, React.Dispatch<UIAction>] => {
+export const useThemeContext = (): [TimeState, React.Dispatch<TimeAction>] => {
 	const context = useContext(ThemeContext);
 	if (!context) {
 		throw new Error("useThemeContext must be used within a ThemeProvider");
