@@ -6,17 +6,19 @@ export const ThemeContext = createContext<ThemeContextType | null>(null);
 ThemeContext.displayName = "ThemeContext";
 
 export interface UIState {
-	grid_view: boolean;
-	isLoading: boolean;
-	category: string;
-	sorting_value: string;
+	minute: number;
+	second: number;
+	startCounting: boolean;
+	stopCounting: boolean;
+	restart: number;
 }
 
 export type UIAction =
-	| { type: "SET_GRIDVIEW"; value: boolean }
-	| { type: "IS_LOADING"; value: boolean }
-	| { type: "CATEGORY"; value: string }
-	| { type: "GET_SORT_VALUE"; value: string };
+	| { type: "MINUTES"; value: number }
+	| { type: "SECOND"; value: number }
+	| { type: "START"; value: boolean }
+	| { type: "STOP"; value: boolean }
+	| { type: "RESTART"; value: number }
 
 export interface ThemeContextType {
 	state: UIState;
@@ -24,33 +26,39 @@ export interface ThemeContextType {
 }
 
 const initalState: UIState = {
-	grid_view: true,
-	isLoading: false,
-	category: "freshflower",
-	sorting_value: "ascending"
+	minute: 25,
+	second: 0,
+	startCounting: false,
+	stopCounting: false,
+	restart: 25
 }
 
 const reducer = (state: UIState, action: UIAction) => {
 	switch (action.type) {
-		case "SET_GRIDVIEW":
+		case "MINUTES":
 			return {
 				...state,
-				grid_view: action.value
+				minute: action.value
 			};
-		case "IS_LOADING":
+		case "SECOND":
 			return {
 				...state,
-				isLoading: action.value
+				second: action.value
 			}
-		case "CATEGORY":
+		case "START":
 			return {
 				...state,
-				category: action.value
+				startCounting: action.value
 			}
-		case "GET_SORT_VALUE":
+		case "STOP":
 			return {
 				...state,
-				sorting_value: action.value
+				stopCounting: action.value
+			}
+		case "RESTART":
+			return {
+				...state,
+				restart: action.value
 			}
 		default: {
 			throw new Error(`Unhandled action type`);
@@ -64,6 +72,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 	const [state, dispatch] = useReducer(reducer, initalState);
 
 	const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
+
 
 	return (
 		<ThemeContext.Provider value={value}>
