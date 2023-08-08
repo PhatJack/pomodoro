@@ -41,7 +41,8 @@ const Tags = () => {
 							} rounded-md`}
 						onClick={() => {
 							handleTagClick(index);
-							dispatch({ type: "MINUTES", value: item.time })
+							dispatch({ type: "MINUTES", value: item.time });
+							dispatch({ type: "TOGGLEOF", value: false })
 						}}
 					>
 						{item.name}
@@ -50,16 +51,11 @@ const Tags = () => {
 			</div>
 			<Timer />
 			<div className="flex justify-between items-center gap-5">
-				{
-					!state.startCounting && state.stopCounting === false ?
-						<button className='text-xl text-black font-semibold px-6 py-2 border bg-white rounded-md'
-							onClick={() => { dispatch({ type: "START", value: true }) }}
-						>Start</button>
-						:
-						<button className='text-xl text-black font-semibold px-6 py-2 border bg-white rounded-md'
-							onClick={() => { dispatch({ type: "STOP", value: true }) }}
-						>Pause</button>
-				}
+				<button className='text-xl text-black font-semibold px-6 py-2 border bg-white rounded-md'
+					onClick={() => { dispatch({ type: "TOGGLEOF", value: !state.toggleOnOff }) }}
+				>
+					{!state.toggleOnOff ? 'Start' : 'Pause'}
+				</button>
 				<button onClick={() => { dispatch({ type: "RESTART", value: true }) }}>
 					<VscDebugRestart size={30} className="text-white" />
 				</button>

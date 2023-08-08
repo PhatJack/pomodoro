@@ -14,12 +14,13 @@ const Timer: React.FC = () => {
 	useEffect(() => {
 		setMinutes(state.minute);
 		setSeconds(state.second);
+
 	}, [state.minute, state.second]);
 
 	useEffect(() => {
 		let timerInterval: number;
 
-		if (state.startCounting && state.stopCounting == false) {
+		if (state.toggleOnOff) {
 			timerInterval = window.setInterval(() => {
 				if (seconds > 0) {
 					setSeconds(seconds - 1);
@@ -33,11 +34,11 @@ const Timer: React.FC = () => {
 				}
 			}, 1000);
 		}
-
+		document.title = `${minutes}:${seconds.toString().padStart(2, '0')} | Pomodoro Timer | Study Focus`
 		return () => {
 			window.clearInterval(timerInterval); // Clean up the interval on component unmount
 		};
-	}, [state.startCounting, minutes, seconds]);
+	}, [state.toggleOnOff, minutes, seconds]);
 
 
 	const children = () => {

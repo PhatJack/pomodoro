@@ -8,16 +8,14 @@ ThemeContext.displayName = "ThemeContext";
 export interface TimeState {
 	minute: number;
 	second: number;
-	startCounting: boolean;
-	stopCounting: boolean;
+	toggleOnOff: boolean;
 	restart: boolean;
 }
 
 export type TimeAction =
 	| { type: "MINUTES"; value: number }
 	| { type: "SECOND"; value: number }
-	| { type: "START"; value: boolean }
-	| { type: "STOP"; value: boolean }
+	| { type: "TOGGLEOF"; value: boolean }
 	| { type: "RESTART"; value: boolean }
 
 export interface ThemeContextType {
@@ -28,8 +26,7 @@ export interface ThemeContextType {
 const initalState: TimeState = {
 	minute: 25,
 	second: 0,
-	startCounting: false,
-	stopCounting: false,
+	toggleOnOff: false,
 	restart: false
 }
 
@@ -45,15 +42,10 @@ const reducer = (state: TimeState, action: TimeAction) => {
 				...state,
 				second: action.value
 			}
-		case "START":
+		case "TOGGLEOF":
 			return {
 				...state,
-				startCounting: action.value
-			}
-		case "STOP":
-			return {
-				...state,
-				stopCounting: action.value
+				toggleOnOff: action.value
 			}
 		case "RESTART":
 			return {
