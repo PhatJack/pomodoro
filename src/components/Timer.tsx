@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useThemeContext } from '../hooks/useThemeContext';
-import CountdownAnimation from './CountdownAnimation';
 
 const Timer: React.FC = () => {
 
 	let [state, dispatch] = useThemeContext();
 
-	let [minutes, setMinutes] = useState<number>(state.minute);
+	let [minutes, setMinutes] = useState<number>(0);
 	let [seconds, setSeconds] = useState<number>(state.second);
 
-	console.log(minutes, seconds)
+	// console.log(minutes, seconds)
 
 	useEffect(() => {
-		setMinutes(state.minute);
+		if (state.timeKind === "pomodoro") {
+			setMinutes(state.pomodoro);
+		} else if (state.timeKind === "short") {
+			setMinutes(state.shortBreak);
+		} else if (state.timeKind === "long") {
+			setMinutes(state.longBreak);
+		}
 		setSeconds(state.second);
 
-	}, [state.minute, state.second]);
+	}, [state.timeKind, state.pomodoro, state.shortBreak, state.longBreak,state.second]);
 
 	useEffect(() => {
 		let timerInterval: number;
@@ -40,17 +45,12 @@ const Timer: React.FC = () => {
 		};
 	}, [state.toggleOnOff, minutes, seconds]);
 
-
-	const children = () => {
-		const formattedSeconds = seconds.toString().padStart(2, '0');
-		return `${minutes}:${formattedSeconds}`;
-	}
-
+	const formattedSeconds = seconds.toString().padStart(2, '0');
+	const timerText = `${minutes}:${formattedSeconds}`;
 	return (
+
 		<div className="text-[75px] my-6 font-bold text-white rounded-full shadow-xl">
-			<CountdownAnimation key={1}>
-				{children}
-			</CountdownAnimation>
+			{timerText}
 		</div>
 	);
 };

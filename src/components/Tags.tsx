@@ -4,15 +4,16 @@ import { VscDebugRestart } from 'react-icons/vsc'
 import Timer from './Timer'
 import { useThemeContext } from '../hooks/useThemeContext'
 import Setting from './Setting'
-
+import { TimeAction } from '../context/ThemeContext'
 
 const Tags = () => {
 
 	const [activeTag, setActiveTag] = useState(0)
 	const [setting, setSetting] = useState(false)
 
-
+	
 	const [state, dispatch] = useThemeContext();
+	console.log(state.timeKind)
 
 	const handleOpenSetting = () => {
 		setSetting(!setting)
@@ -22,24 +23,24 @@ const Tags = () => {
 		setActiveTag(index)
 	}
 
-	console.log(setting)
+	const pomodoroAction: TimeAction = { type: "POMODORO", value: 25 };
+	const shortBreakAction: TimeAction = { type: "SHORT", value: 5 };
+	const longBreakAction: TimeAction = { type: "LONG", value: 10 };
 
 	const menu = [
 		{
 			name: "Pomodoro",
-			time: 25,
-
+			action: pomodoroAction
 		},
 		{
 			name: "Short Break",
-			time: 5
+			action: shortBreakAction
 		},
 		{
 			name: "Long Break",
-			time: 10
+			action: longBreakAction
 		}
-	]
-
+	];
 	return (
 		<div className='flex flex-col justify-between items-center'>
 			<div className="pomodoro-duration flex w-full justify-between items-center gap-3 h-[4em]">
@@ -50,8 +51,9 @@ const Tags = () => {
 							} rounded-md`}
 						onClick={() => {
 							handleTagClick(index);
-							dispatch({ type: "MINUTES", value: item.time });
+							dispatch({ type: item.action.type, value: item.action.value })
 							dispatch({ type: "TOGGLEOF", value: false })
+							dispatch({ type: "KIND", value: item.action.type.toLocaleLowerCase()})
 						}}
 					>
 						{item.name}
