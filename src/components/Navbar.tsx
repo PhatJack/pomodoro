@@ -1,6 +1,4 @@
-import React from 'react'
 import Banner from '../assets/Study.png'
-
 
 const Navbar = () => {
 	return (

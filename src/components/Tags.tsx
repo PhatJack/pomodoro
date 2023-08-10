@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { RiListSettingsLine } from 'react-icons/ri'
 import { VscDebugRestart } from 'react-icons/vsc'
 import Timer from './Timer'
