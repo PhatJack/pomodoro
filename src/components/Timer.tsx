@@ -9,6 +9,20 @@ const Timer: React.FC = () => {
 	let [seconds, setSeconds] = useState<number>(state.second);
 
 	// console.log(minutes, seconds)
+	useEffect(() => {
+		if (state.restart === true) {
+			if (state.timeKind === "pomodoro") {
+				setMinutes(25);
+			} else if (state.timeKind === "short") {
+				setMinutes(5);
+			} else if (state.timeKind === "long") {
+				setMinutes(10);
+			}
+			setSeconds(state.second);
+			dispatch({ type: "RESTART", value: false })
+
+		}
+	}, [state.restart, state.timeKind, state.pomodoro, state.shortBreak, state.longBreak, state.second])
 
 	useEffect(() => {
 		if (state.timeKind === "pomodoro") {
@@ -44,7 +58,7 @@ const Timer: React.FC = () => {
 			window.clearInterval(timerInterval); // Clean up the interval on component unmount
 		};
 	}, [state.toggleOnOff, minutes, seconds]);
-	
+
 	const formattedSeconds = seconds.toString().padStart(2, '0');
 	const timerText = `${minutes}:${formattedSeconds}`;
 	return (

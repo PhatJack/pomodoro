@@ -11,7 +11,7 @@ const Tags = () => {
 	const [activeTag, setActiveTag] = useState(0)
 	const [setting, setSetting] = useState(false)
 
-	
+
 	const [state, dispatch] = useThemeContext();
 	console.log(state.timeKind)
 
@@ -53,7 +53,7 @@ const Tags = () => {
 							handleTagClick(index);
 							dispatch({ type: item.action.type, value: item.action.value })
 							dispatch({ type: "TOGGLEOF", value: false })
-							dispatch({ type: "KIND", value: item.action.type.toLocaleLowerCase()})
+							dispatch({ type: "KIND", value: item.action.type.toLocaleLowerCase() })
 						}}
 					>
 						{item.name}
@@ -67,7 +67,9 @@ const Tags = () => {
 				>
 					{!state.toggleOnOff ? 'Start' : 'Pause'}
 				</button>
-				<button onClick={() => { dispatch({ type: "RESTART", value: true }) }}>
+				<button onClick={() => {
+					dispatch({ type: "RESTART", value: true })
+				}}>
 					<VscDebugRestart size={30} className="text-white" />
 				</button>
 				<button onClick={handleOpenSetting}>
