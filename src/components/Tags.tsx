@@ -5,6 +5,7 @@ import Timer from './Timer'
 import { useThemeContext } from '../hooks/useThemeContext'
 import Setting from './Setting'
 import { TimeAction } from '../context/ThemeContext'
+import { toast } from 'react-toastify'
 
 const Tags = () => {
 
@@ -23,9 +24,13 @@ const Tags = () => {
 		setActiveTag(index)
 	}
 
-	const pomodoroAction: TimeAction = { type: "POMODORO", value: 25 };
-	const shortBreakAction: TimeAction = { type: "SHORT", value: 5 };
-	const longBreakAction: TimeAction = { type: "LONG", value: 10 };
+	const pomodoroValue = localStorage.getItem("pomodoro") || "25";
+	const shortValue = localStorage.getItem("short") || "5";
+	const longValue = localStorage.getItem("long") || "10";
+
+	const pomodoroAction: TimeAction = { type: "POMODORO", value: parseInt(pomodoroValue) };
+	const shortBreakAction: TimeAction = { type: "SHORT", value: parseInt(shortValue) };
+	const longBreakAction: TimeAction = { type: "LONG", value: parseInt(longValue) };
 
 	const menu = [
 		{
@@ -69,6 +74,7 @@ const Tags = () => {
 				</button>
 				<button onClick={() => {
 					dispatch({ type: "RESTART", value: true })
+					toast.success("Reset time successful!")
 				}}>
 					<VscDebugRestart size={30} className="text-white" />
 				</button>

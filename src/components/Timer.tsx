@@ -63,7 +63,7 @@ const Timer: React.FC = () => {
 	const timerText = `${minutes}:${formattedSeconds}`;
 	return (
 
-		<div className="text-[75px] my-6 font-bold text-white rounded-full shadow-xl">
+		<div className="text-[75px] my-6 font-bold text-white">
 			{timerText}
 		</div>
 	);

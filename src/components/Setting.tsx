@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import General from './settingPages/General';
 import Timer from './settingPages/Timer';
 import Sound from './settingPages/Sound';
+import { useThemeContext } from '../hooks/useThemeContext';
 interface SettingProps {
 	setting: boolean;
 	onSettingChange: () => void;
@@ -14,12 +15,12 @@ interface SettingProps {
 const Setting: React.FC<SettingProps> = ({ setting, onSettingChange }) => {
 
 	const [activeLiTag, setActiveLiTag] = useState<number>(0);
-
+	const [state, dispatch] = useThemeContext();
 	const handleActiveLiTag = (index: number) => {
 		setActiveLiTag(index)
 	}
 
-	const resetNotification = () => toast("All Setting have been reset!")
+	const resetNotification = () => toast.info("All Setting have been reset!")
 
 	const menuSetting = [
 		{
@@ -77,13 +78,28 @@ const Setting: React.FC<SettingProps> = ({ setting, onSettingChange }) => {
 					<div className="flex justify-between items-center">
 						<button
 							className='px-5 py-3 border-2 border-red-400 rounded-lg text-red-400 font-mono transition-all hover:bg-red-400 hover:text-white'
-							onClick={resetNotification}
+							onClick={() => {
+								resetNotification()
+								localStorage.setItem("imageBg", "TokyoSakura")
+								localStorage.setItem("pomodoro", "25")
+								localStorage.setItem("short", "5")
+								localStorage.setItem("long", "10")
+
+								dispatch({ type: "TOGGLEBACKGROUND", value: "TokyoSakura" })
+							}}
 						>Reset All</button>
 						<button
 							className='px-5 py-3 border-2 border-white rounded-lg text-white font-mono transition-all hover:bg-white hover:text-black'
 							onClick={() => {
 								onSettingChange();
-								toast("Save changes successfully!")
+								toast.success("Save changes successfully!")
+								const pomodoroValue = localStorage.getItem("pomodoro") || "25";
+								const shortValue = localStorage.getItem("short") || "5";
+								const longValue = localStorage.getItem("long") || "10";
+								dispatch({ type: "POMODORO", value: parseInt(pomodoroValue) })
+								dispatch({ type: "SHORT", value: parseInt(shortValue) })
+								dispatch({ type: "LONG", value: parseInt(longValue) })
+
 							}}
 						>Save Changes</button>
 					</div>

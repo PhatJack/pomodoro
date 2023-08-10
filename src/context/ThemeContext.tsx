@@ -31,10 +31,14 @@ export interface ThemeContextType {
 	dispatch: React.Dispatch<TimeAction>;
 }
 
+const pomodoroValue = localStorage.getItem("pomodoro") || "25";
+const shortValue = localStorage.getItem("short") || "5";
+const longValue = localStorage.getItem("long") || "10";
+
 const initalState: TimeState = {
-	pomodoro: 25,
-	shortBreak: 5,
-	longBreak: 10,
+	pomodoro: parseInt(pomodoroValue),
+	shortBreak: parseInt(shortValue),
+	longBreak: parseInt(longValue),
 	second: 0,
 	toggleOnOff: false,
 	restart: false,

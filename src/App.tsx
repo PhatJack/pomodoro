@@ -6,10 +6,8 @@ import { useThemeContext } from './hooks/useThemeContext';
 
 function App() {
 	const [state, dispatch] = useThemeContext();
-	// console.log(state.mainBg)
 	// Provide a default value for state.mainBg if it's null
 	const mainBg = localStorage.getItem("imageBg") ?? 'TokyoSakura';
-
 	return (
 		<div className='relative bg-black'>
 			<div className="w-full h-full -z-10 fixed top-0 left-0 right-0 bottom-0 object-cover object-center">
