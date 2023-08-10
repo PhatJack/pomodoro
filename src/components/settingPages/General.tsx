@@ -29,6 +29,10 @@ const General = () => {
 			name: "Life Goes On",
 			value: "LifeGoesOn"
 		},
+		{
+			name: "Light Trails On Suburban Highway",
+			value: "LightTrailsOnSuburbanHighway"
+		}
 	]
 
 	const [state, dispatch] = useThemeContext()
