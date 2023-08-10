@@ -4,9 +4,10 @@ import { BsChevronDown } from 'react-icons/bs'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import General from './settingPages/General';
-import Timer from './settingPages/Timer';
 import Sound from './settingPages/Sound';
 import { useThemeContext } from '../hooks/useThemeContext';
+import Timer from './Timer';
+import TimerSetting from './settingPages/TimerSetting';
 interface SettingProps {
 	setting: boolean;
 	onSettingChange: () => void;
@@ -29,7 +30,7 @@ const Setting: React.FC<SettingProps> = ({ setting, onSettingChange }) => {
 		},
 		{
 			name: "Timer",
-			layout: Timer
+			layout: TimerSetting
 		},
 		{
 			name: "Sounds",
@@ -70,8 +71,8 @@ const Setting: React.FC<SettingProps> = ({ setting, onSettingChange }) => {
 							className='absolute top-5 right-5'
 						>
 							<AiOutlineClose
-								size={30}
-								className="text-white hover:-rotate-[360deg] rotate-0 transition-all duration-300"
+								size={25}
+								className="text-gray-400 hover:-rotate-[360deg] rotate-0 transition-all duration-300"
 							/>
 						</button>
 					</div>
@@ -84,7 +85,6 @@ const Setting: React.FC<SettingProps> = ({ setting, onSettingChange }) => {
 								localStorage.setItem("pomodoro", "25")
 								localStorage.setItem("short", "5")
 								localStorage.setItem("long", "10")
-
 								dispatch({ type: "TOGGLEBACKGROUND", value: "TokyoSakura" })
 							}}
 						>Reset All</button>

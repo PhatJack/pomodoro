@@ -49,7 +49,11 @@ const General = () => {
 					}
 				>
 					{options.map((item, index) => (
-						<option className='text-white bg-black/95' value={item.value}>{item.name}</option>
+						<option
+							className='text-white bg-black/95'
+							value={item.value}
+							key={index}
+						>{item.name}</option>
 					))}
 				</select>
 				<BsChevronDown size={18} className="absolute text-white top-[27%] right-12" />

@@ -1,12 +1,22 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import { useThemeContext } from '../../hooks/useThemeContext';
+import Setting from '../Setting';
 
 interface TimerItem {
 	title: string;
-	key: string;
+	key: keyof typeof defaultInputValues;
 }
 
-const Timer: React.FC = () => {
+const defaultInputValues = {
+	pomodoro: "25",
+	short: "5",
+	long: "10"
+};
+
+// Define the handleResetDefaults function
+
+const TimerSetting: React.FC = () => {
+
 	const [state] = useThemeContext();
 
 	const pomodoroTimer: TimerItem[] = [
@@ -24,15 +34,16 @@ const Timer: React.FC = () => {
 		}
 	];
 
-	const [inputValues, setInputValues] = useState<{ [key: string]: string }>(() => {
-		return {
-			pomodoro: localStorage.getItem("pomodoro") || "25",
-			short: localStorage.getItem("short") || "5",
-			long: localStorage.getItem("long") || "10"
+	const [inputValues, setInputValues] = useState<typeof defaultInputValues>(() => {
+		const storedValues: typeof defaultInputValues = {
+			pomodoro: localStorage.getItem("pomodoro") || defaultInputValues.pomodoro,
+			short: localStorage.getItem("short") || defaultInputValues.short,
+			long: localStorage.getItem("long") || defaultInputValues.long
 		};
+		return storedValues;
 	});
 
-	const handleInputChange = (event: ChangeEvent<HTMLInputElement>, key: string) => {
+	const handleInputChange = (event: ChangeEvent<HTMLInputElement>, key: keyof typeof defaultInputValues) => {
 		const { value } = event.target;
 		setInputValues((prevValues) => ({
 			...prevValues,
@@ -63,6 +74,6 @@ const Timer: React.FC = () => {
 			</div>
 		</div>
 	);
-};
+}
 
-export default Timer;
+export default TimerSetting
