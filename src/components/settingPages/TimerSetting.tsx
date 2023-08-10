@@ -1,6 +1,6 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import Setting from '../Setting';
+
 
 interface TimerItem {
 	title: string;
@@ -17,7 +17,9 @@ const defaultInputValues = {
 
 const TimerSetting: React.FC = () => {
 
-	const [state] = useThemeContext();
+	const [state, dispatch] = useThemeContext();
+
+	console.log(state, dispatch)
 
 	const pomodoroTimer: TimerItem[] = [
 		{

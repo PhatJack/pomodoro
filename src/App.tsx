@@ -6,6 +6,7 @@ import { useThemeContext } from './hooks/useThemeContext';
 
 function App() {
 	const [state, dispatch] = useThemeContext();
+	console.log(state,dispatch)
 	// Provide a default value for state.mainBg if it's null
 	const mainBg = localStorage.getItem("imageBg") ?? 'TokyoSakura';
 	return (

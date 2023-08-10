@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import { BsChevronDown } from 'react-icons/bs'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import General from './settingPages/General';
 import Sound from './settingPages/Sound';
 import { useThemeContext } from '../hooks/useThemeContext';
-import Timer from './Timer';
 import TimerSetting from './settingPages/TimerSetting';
 interface SettingProps {
 	setting: boolean;
@@ -20,7 +18,7 @@ const Setting: React.FC<SettingProps> = ({ setting, onSettingChange }) => {
 	const handleActiveLiTag = (index: number) => {
 		setActiveLiTag(index)
 	}
-
+	console.log(state)
 	const resetNotification = () => toast.info("All Setting have been reset!")
 
 	const menuSetting = [

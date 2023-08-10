@@ -1,8 +1,6 @@
-import React from 'react'
 import FavicoIcon from '../assets/FavicoIcon.png'
-type Props = {}
 
-const Footer = (props: Props) => {
+const Footer = () => {
 	return (
 		<div className='px-16 p w-full'>
 			<div className="flex justify-between items-center w-full">

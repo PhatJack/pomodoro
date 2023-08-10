@@ -1,4 +1,3 @@
-import React from 'react'
 import { BsChevronDown } from 'react-icons/bs'
 import { useThemeContext } from '../../hooks/useThemeContext'
 
@@ -33,6 +32,8 @@ const General = () => {
 	]
 
 	const [state, dispatch] = useThemeContext()
+
+	console.log(state)
 	return (
 		<div className="flex flex-col pb-3">
 			<div className="flex flex-col gap-3">
