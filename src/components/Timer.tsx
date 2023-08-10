@@ -20,7 +20,7 @@ const Timer: React.FC = () => {
 		}
 		setSeconds(state.second);
 
-	}, [state.timeKind, state.pomodoro, state.shortBreak, state.longBreak,state.second]);
+	}, [state.timeKind, state.pomodoro, state.shortBreak, state.longBreak, state.second]);
 
 	useEffect(() => {
 		let timerInterval: number;
@@ -44,7 +44,7 @@ const Timer: React.FC = () => {
 			window.clearInterval(timerInterval); // Clean up the interval on component unmount
 		};
 	}, [state.toggleOnOff, minutes, seconds]);
-
+	
 	const formattedSeconds = seconds.toString().padStart(2, '0');
 	const timerText = `${minutes}:${formattedSeconds}`;
 	return (

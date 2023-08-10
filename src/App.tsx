@@ -1,18 +1,25 @@
-import LightTrail from './assets/LightTrailsOnSuburbanHighway.png'
-import LifeGoesOn from './assets/LifeGoesOn.png'
-import TokyoSakura from './assets/TokyoSakura.png'
-import NeonCity from './assets/NeonCity.png'
-import Navbar from './components/Navbar'
-import Tags from './components/Tags'
-import Footer from './components/Footer'
+import Navbar from './components/Navbar';
+import Tags from './components/Tags';
+import Footer from './components/Footer';
 import { ToastContainer } from 'react-toastify';
+import { useThemeContext } from './hooks/useThemeContext';
 
 function App() {
+	const [state, dispatch] = useThemeContext();
+	console.log(state.mainBg)
+	// Provide a default value for state.mainBg if it's null
+	const mainBg = localStorage.getItem("imageBg") ?? 'TokyoSakura';
 
 	return (
 		<div className='relative bg-black'>
 			<div className="w-full h-full -z-10 fixed top-0 left-0 right-0 bottom-0 object-cover object-center">
-				<img src={TokyoSakura} alt="" className='w-full h-screen object-fill object-center -z-10 bg-black' loading='lazy' placeholder='TokyoSakura' />
+				<img
+					src={`/src/assets/${mainBg}.png`}
+					alt=""
+					className='w-full h-screen object-cover object-center -z-10 bg-black'
+					loading='lazy'
+					placeholder='TokyoSakura'
+				/>
 			</div>
 			<div className="absolute flex flex-col justify-between items-center h-screen py-16 w-full bg-black/20">
 				<Navbar />
@@ -32,7 +39,7 @@ function App() {
 				theme="dark"
 			/>
 		</div>
-	)
+	);
 }
 
-export default App
+export default App;
