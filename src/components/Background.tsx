@@ -47,7 +47,7 @@ const Background = () => {
 		}
 	]
 
-	const getImgSrc = listImg.filter((item) => { return localStorage.getItem("imageBg") == item.value.toString() })
+	const getImgSrc = listImg.filter((item) => { return localStorage.getItem("imageBg") === item.value })
 	console.log(getImgSrc[0].img)
 
 	return (
