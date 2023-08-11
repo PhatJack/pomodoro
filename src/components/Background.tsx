@@ -47,9 +47,7 @@ const Background = () => {
 		}
 	]
 
-	const getImgSrc = listImg.filter((item) => { return localStorage.getItem("imageBg") === item.value })
-	console.log(getImgSrc[0].img)
-
+	const getImgSrc = listImg.filter((item) => { return localStorage.getItem("imageBg") === item.value })	
 	return (
 		<div className="w-full h-full -z-10 fixed top-0 left-0 right-0 bottom-0 object-cover object-center">
 			<img
