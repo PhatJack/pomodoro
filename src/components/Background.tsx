@@ -47,11 +47,12 @@ const Background = () => {
 		}
 	]
 
-	const getImgSrc = listImg.filter((item) => { return localStorage.getItem("imageBg") === item.value })	
+	const getImgSrc = listImg.find((item) => localStorage.getItem("imageBg")?.toLowerCase() === item.value.toLowerCase()) || listImg[0];
+	
 	return (
 		<div className="w-full h-full -z-10 fixed top-0 left-0 right-0 bottom-0 object-cover object-center">
 			<img
-				src={getImgSrc[0].img}
+				src={getImgSrc.img}
 				alt=""
 				className='w-full h-screen object-cover object-center -z-10 bg-black'
 				loading='lazy'
