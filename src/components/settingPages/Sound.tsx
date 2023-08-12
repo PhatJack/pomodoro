@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'; // Import useRef
+import { useRef, useState } from 'react'; // Import useRef
 import { useThemeContext } from '../../hooks/useThemeContext';
 import Bell from '../../assets/audio/bell.mp3';
 import Birdvoice from '../../assets/audio/birdvoice.mp3';
