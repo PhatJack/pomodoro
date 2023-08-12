@@ -14,6 +14,7 @@ export interface TimeState {
 	restart: boolean;
 	mainBg: string;
 	timeKind: string;
+	audio: string;
 }
 
 export type TimeAction =
@@ -25,6 +26,7 @@ export type TimeAction =
 	| { type: "RESTART"; value: boolean }
 	| { type: "TOGGLEBACKGROUND"; value: string }
 	| { type: "KIND"; value: string }
+	| { type: "SOUND", value: string }
 
 export interface ThemeContextType {
 	state: TimeState;
@@ -44,6 +46,7 @@ const initalState: TimeState = {
 	restart: false,
 	mainBg: "TokyoSakura",
 	timeKind: "pomodoro",
+	audio: "bell"
 }
 
 const reducer = (state: TimeState, action: TimeAction) => {
@@ -87,6 +90,11 @@ const reducer = (state: TimeState, action: TimeAction) => {
 			return {
 				...state,
 				timeKind: action.value
+			}
+		case "SOUND":
+			return {
+				...state,
+				sound: action.value
 			}
 		default: {
 			throw new Error(`Unhandled action type`);

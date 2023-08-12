@@ -7,3 +7,22 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+.custom-range::-webkit-slider-thumb {
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	background-color: #00c7ba;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.custom-range::-moz-range-thumb {
+	width: 18px;
+	height: 18px;
+	background-color: #00c7ba;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+}
