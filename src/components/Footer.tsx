@@ -1,5 +1,5 @@
 import FavicoIcon from '../assets/FavicoIcon.png'
-
+import {memo} from 'react'
 const Footer = () => {
 	return (
 		<div className='px-16 p w-full'>
@@ -15,4 +15,4 @@ const Footer = () => {
 	)
 }
 
-export default Footer
+export default memo(Footer)

@@ -1,6 +1,8 @@
+import { memo } from 'react';
 import Banner from '../assets/Study.png'
 
 const Navbar = () => {
+	console.log('re-render')
 	return (
 		<div className='w-full pl-16'>
 			<div className="flex justify-center md:justify-start items-center">
@@ -12,4 +14,4 @@ const Navbar = () => {
 	)
 }
 
-export default Navbar;
+export default memo(Navbar);

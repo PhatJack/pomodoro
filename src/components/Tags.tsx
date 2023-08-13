@@ -14,7 +14,6 @@ const Tags = () => {
 
 
 	const [state, dispatch] = useThemeContext();
-	console.log(state.timeKind)
 
 	const handleOpenSetting = () => {
 		setSetting(!setting)
