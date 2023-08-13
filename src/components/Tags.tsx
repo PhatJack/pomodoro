@@ -47,7 +47,7 @@ const Tags = () => {
 	];
 	return (
 		<div className='flex flex-col justify-between items-center'>
-			<div className="pomodoro-duration flex w-full justify-between items-center gap-3 h-[4em]">
+			<div className="pomodoro-duration flex md:flex-nowrap flex-wrap w-full justify-center md:justify-between items-center gap-3 md:h-[4em]">
 				{menu.map((item, index) => (
 					<button
 						key={index}
